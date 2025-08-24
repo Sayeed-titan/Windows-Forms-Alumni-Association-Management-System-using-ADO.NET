@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace AlumniAssociationApp
 {
-    public partial class Form1 : Form
+    public partial class AlumniForm : Form
     {
-        public Form1()
+        public AlumniForm()
         {
             InitializeComponent();
         }

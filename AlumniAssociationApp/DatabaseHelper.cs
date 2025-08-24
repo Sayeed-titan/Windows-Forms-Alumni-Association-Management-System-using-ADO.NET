@@ -6,7 +6,7 @@ namespace AlumniAssociationApp
 {
     public static class DatabaseHelper
     {
-        private static string connectionString = @"Server=.\SQLEXPRESS;Database=AlumniDB;Trusted_Connection=True;";
+        private static string connectionString = @"Server=.;Database=AlumniDB;Trusted_Connection=True;";
 
         public static DataTable GetData(string query)
         {
