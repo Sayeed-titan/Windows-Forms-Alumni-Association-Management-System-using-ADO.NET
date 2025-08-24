@@ -19,11 +19,33 @@ namespace AlumniAssociationApp
         private bool isUpdateMode = false;
         private int selectedAlumniId = -1;
 
+        private bool isFormLoading = true;
+
 
         public AlumniForm()
         {
-            InitializeComponent();
+            InitializeComponent();        
+      
+            // Initially hide  buttons
+            btnDelete.Visible = false;
+            btnCancel.Visible = false;
+            btnClear.Visible = false;
+
+            // Hook TextChanged events
+            txtName.TextChanged += TextBoxes_TextChanged;
+            txtYear.TextChanged += TextBoxes_TextChanged;
+            txtEmail.TextChanged += TextBoxes_TextChanged;
+            txtPhone.TextChanged += TextBoxes_TextChanged;
+
+
+            // Prevent SelectionChanged from firing during load
+            isFormLoading = true;
+
             LoadAlumni();
+
+            // Form is fully loaded
+            isFormLoading = false;
+
         }
 
         private void LoadAlumni()
@@ -40,6 +62,9 @@ namespace AlumniAssociationApp
                     row["PhotoImage"] = new Bitmap(path);
             }
 
+            // Temporarily unsubscribe to prevent SelectionChanged firing
+            dataGridView1.SelectionChanged -= dataGridView1_SelectionChanged;
+
             dataGridView1.DataSource = dt;
 
             if (dataGridView1.Columns["PhotoPath"] != null)
@@ -49,18 +74,25 @@ namespace AlumniAssociationApp
             {
                 dataGridView1.Columns["PhotoImage"].HeaderText = "Photo";
                 dataGridView1.Columns["PhotoImage"].Width = 100;
+                DataGridViewImageColumn imgCol = dataGridView1.Columns["PhotoImage"] as DataGridViewImageColumn;
+                if (imgCol != null)
+                    imgCol.ImageLayout = DataGridViewImageCellLayout.Zoom;
             }
 
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.ReadOnly = true;
+            dataGridView1.RowTemplate.Height = 120;
 
-            dataGridView1.RowTemplate.Height = 120; // increase row height
-            dataGridView1.ClearSelection();         // no row selected on load
+            // Clear any selection so no row is selected on load
+            dataGridView1.ClearSelection();
 
-            ClearFields(); // Clear all inputs on form load
+            // Re-subscribe after clearing selection
+            dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
+
+            // Clear input fields and hide buttons
+            ClearFields();
         }
-
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -138,6 +170,7 @@ namespace AlumniAssociationApp
             ClearFields();
         }
 
+
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (dataGridView1.CurrentRow == null) return;
@@ -163,26 +196,36 @@ namespace AlumniAssociationApp
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
-            if (dataGridView1.CurrentRow == null) return;
+            if (isFormLoading) return;
+            if (dataGridView1.CurrentRow == null)
+            {
+                btnDelete.Visible = false;
+                return;
+            }
 
+            btnDelete.Visible = true;
+            btnCancel.Visible = true;
+            isUpdateMode = true;
+            selectedAlumniId = Convert.ToInt32(dataGridView1.CurrentRow.Cells["AlumniID"].Value);
+            btnAdd.Text = "Update";
+
+            // Fill fields
             txtName.Text = dataGridView1.CurrentRow.Cells["FullName"].Value.ToString();
             txtYear.Text = dataGridView1.CurrentRow.Cells["GraduationYear"].Value.ToString();
             txtEmail.Text = dataGridView1.CurrentRow.Cells["Email"].Value.ToString();
             txtPhone.Text = dataGridView1.CurrentRow.Cells["Phone"].Value.ToString();
 
             string path = dataGridView1.CurrentRow.Cells["PhotoPath"].Value.ToString();
-            if (!string.IsNullOrEmpty(path) && File.Exists(path))
-                picPhoto.Image = new Bitmap(path);
-            else
-                picPhoto.Image = null;
+            picPhoto.Image = (!string.IsNullOrEmpty(path) && File.Exists(path)) ? new Bitmap(path) : null;
 
-            selectedPhotoPath = "";
+            // Update Clear button visibility
+            TextBoxes_TextChanged(null, null);
 
-            // Enable update mode
-            isUpdateMode = true;
-            selectedAlumniId = Convert.ToInt32(dataGridView1.CurrentRow.Cells["AlumniID"].Value);
-            btnAdd.Text = "Update";
-            btnCancel.Visible = true;
+            // Photo fit
+            DataGridViewImageColumn imgCol = dataGridView1.Columns["PhotoImage"] as DataGridViewImageColumn;
+            if (imgCol != null)
+                imgCol.ImageLayout = DataGridViewImageCellLayout.Zoom;
+
         }
 
 
@@ -190,14 +233,16 @@ namespace AlumniAssociationApp
         {
             using (OpenFileDialog ofd = new OpenFileDialog())
             {
-                ofd.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.webp" ;
+                ofd.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.webp";
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
                     selectedPhotoPath = ofd.FileName;
                     picPhoto.ImageLocation = selectedPhotoPath;
+                    TextBoxes_TextChanged(null, null); // update Clear button visibility
                 }
             }
         }
+
 
         private void ClearFields()
         {
@@ -211,12 +256,24 @@ namespace AlumniAssociationApp
             selectedAlumniId = -1;
             btnAdd.Text = "Add";
             btnCancel.Visible = false;
+            btnDelete.Visible = false;
+
+            // Temporarily unsubscribe to prevent firing SelectionChanged
+            dataGridView1.SelectionChanged -= dataGridView1_SelectionChanged;
             dataGridView1.ClearSelection();
+            dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
+
+            // Update clear button visibility
+            TextBoxes_TextChanged(null, null);
         }
+
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            dataGridView1.SelectionChanged -= dataGridView1_SelectionChanged;
             ClearFields();
+            dataGridView1.ClearSelection();
+            dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
 
         }
 
@@ -227,6 +284,17 @@ namespace AlumniAssociationApp
             await Task.Delay(2000); // show 2 seconds
             lblSnackbar.Visible = false;
         }
+
+        private void TextBoxes_TextChanged(object sender, EventArgs e)
+        {
+            // Show Clear button if any field is filled or photo is set
+            btnClear.Visible = !string.IsNullOrWhiteSpace(txtName.Text) ||
+                               !string.IsNullOrWhiteSpace(txtYear.Text) ||
+                               !string.IsNullOrWhiteSpace(txtEmail.Text) ||
+                               !string.IsNullOrWhiteSpace(txtPhone.Text) ||
+                               picPhoto.Image != null;
+        }
+
 
 
     }

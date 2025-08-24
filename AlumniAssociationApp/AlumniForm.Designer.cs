@@ -29,25 +29,25 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.picPhoto = new System.Windows.Forms.PictureBox();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.txtPhone = new System.Windows.Forms.TextBox();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.labelFullName = new System.Windows.Forms.Label();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.lblPhone = new System.Windows.Forms.Label();
+            this.btnBrowse = new System.Windows.Forms.Button();
+            this.txtEmail = new System.Windows.Forms.TextBox();
             this.txtName = new System.Windows.Forms.TextBox();
             this.lblGraduationYear = new System.Windows.Forms.Label();
-            this.txtYear = new System.Windows.Forms.TextBox();
             this.lblEmail = new System.Windows.Forms.Label();
-            this.txtEmail = new System.Windows.Forms.TextBox();
-            this.lblPhone = new System.Windows.Forms.Label();
-            this.txtPhone = new System.Windows.Forms.TextBox();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnClear = new System.Windows.Forms.Button();
+            this.txtYear = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.picPhoto = new System.Windows.Forms.PictureBox();
-            this.btnBrowse = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
             this.lblSnackbar = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPhoto)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -67,10 +67,52 @@
             this.panel1.Controls.Add(this.lblEmail);
             this.panel1.Controls.Add(this.txtYear);
             this.panel1.Location = new System.Drawing.Point(-2, -1);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(918, 254);
             this.panel1.TabIndex = 0;
+            // 
+            // picPhoto
+            // 
+            this.picPhoto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picPhoto.Location = new System.Drawing.Point(589, 28);
+            this.picPhoto.Name = "picPhoto";
+            this.picPhoto.Size = new System.Drawing.Size(135, 137);
+            this.picPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picPhoto.TabIndex = 3;
+            this.picPhoto.TabStop = false;
+            this.picPhoto.Click += new System.EventHandler(this.TextBoxes_TextChanged);
+            // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(759, 85);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(4);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(83, 39);
+            this.btnClear.TabIndex = 1;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
+            // txtPhone
+            // 
+            this.txtPhone.Location = new System.Drawing.Point(238, 140);
+            this.txtPhone.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPhone.Name = "txtPhone";
+            this.txtPhone.Size = new System.Drawing.Size(330, 25);
+            this.txtPhone.TabIndex = 2;
+            this.txtPhone.TextChanged += new System.EventHandler(this.TextBoxes_TextChanged);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(757, 28);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(85, 39);
+            this.btnDelete.TabIndex = 1;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // labelFullName
             // 
@@ -82,49 +124,27 @@
             this.labelFullName.TabIndex = 1;
             this.labelFullName.Text = "Full Name";
             // 
-            // txtName
+            // btnCancel
             // 
-            this.txtName.Location = new System.Drawing.Point(238, 28);
-            this.txtName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(330, 25);
-            this.txtName.TabIndex = 2;
+            this.btnCancel.Location = new System.Drawing.Point(451, 191);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(117, 39);
+            this.btnCancel.TabIndex = 1;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // lblGraduationYear
+            // btnAdd
             // 
-            this.lblGraduationYear.AutoSize = true;
-            this.lblGraduationYear.Location = new System.Drawing.Point(121, 67);
-            this.lblGraduationYear.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblGraduationYear.Name = "lblGraduationYear";
-            this.lblGraduationYear.Size = new System.Drawing.Size(108, 19);
-            this.lblGraduationYear.TabIndex = 1;
-            this.lblGraduationYear.Text = "Graduation Year";
-            // 
-            // txtYear
-            // 
-            this.txtYear.Location = new System.Drawing.Point(238, 65);
-            this.txtYear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.txtYear.Name = "txtYear";
-            this.txtYear.Size = new System.Drawing.Size(330, 25);
-            this.txtYear.TabIndex = 2;
-            // 
-            // lblEmail
-            // 
-            this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(172, 105);
-            this.lblEmail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(41, 19);
-            this.lblEmail.TabIndex = 1;
-            this.lblEmail.Text = "Email";
-            // 
-            // txtEmail
-            // 
-            this.txtEmail.Location = new System.Drawing.Point(238, 101);
-            this.txtEmail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(330, 25);
-            this.txtEmail.TabIndex = 2;
+            this.btnAdd.Location = new System.Drawing.Point(238, 191);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(117, 39);
+            this.btnAdd.TabIndex = 1;
+            this.btnAdd.Text = "Add";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // lblPhone
             // 
@@ -136,68 +156,6 @@
             this.lblPhone.TabIndex = 1;
             this.lblPhone.Text = "Phone";
             // 
-            // txtPhone
-            // 
-            this.txtPhone.Location = new System.Drawing.Point(238, 140);
-            this.txtPhone.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.txtPhone.Name = "txtPhone";
-            this.txtPhone.Size = new System.Drawing.Size(330, 25);
-            this.txtPhone.TabIndex = 2;
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Location = new System.Drawing.Point(238, 191);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(117, 39);
-            this.btnAdd.TabIndex = 1;
-            this.btnAdd.Text = "Add";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Location = new System.Drawing.Point(757, 28);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(85, 39);
-            this.btnDelete.TabIndex = 1;
-            this.btnDelete.Text = "Delete";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnClear
-            // 
-            this.btnClear.Location = new System.Drawing.Point(759, 85);
-            this.btnClear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(83, 39);
-            this.btnClear.TabIndex = 1;
-            this.btnClear.Text = "Clear";
-            this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(-2, 251);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(918, 306);
-            this.dataGridView1.TabIndex = 2;
-            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
-            // 
-            // picPhoto
-            // 
-            this.picPhoto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picPhoto.Location = new System.Drawing.Point(589, 28);
-            this.picPhoto.Name = "picPhoto";
-            this.picPhoto.Size = new System.Drawing.Size(135, 137);
-            this.picPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picPhoto.TabIndex = 3;
-            this.picPhoto.TabStop = false;
-            // 
             // btnBrowse
             // 
             this.btnBrowse.Location = new System.Drawing.Point(589, 191);
@@ -205,20 +163,67 @@
             this.btnBrowse.Name = "btnBrowse";
             this.btnBrowse.Size = new System.Drawing.Size(135, 39);
             this.btnBrowse.TabIndex = 1;
-            this.btnBrowse.Text = "Browser Photo";
+            this.btnBrowse.Text = "Browse Photo";
             this.btnBrowse.UseVisualStyleBackColor = true;
             this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
             // 
-            // btnCancel
+            // txtEmail
             // 
-            this.btnCancel.Location = new System.Drawing.Point(451, 191);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(117, 39);
-            this.btnCancel.TabIndex = 1;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.txtEmail.Location = new System.Drawing.Point(238, 101);
+            this.txtEmail.Margin = new System.Windows.Forms.Padding(4);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(330, 25);
+            this.txtEmail.TabIndex = 2;
+            this.txtEmail.TextChanged += new System.EventHandler(this.TextBoxes_TextChanged);
+            // 
+            // txtName
+            // 
+            this.txtName.Location = new System.Drawing.Point(238, 28);
+            this.txtName.Margin = new System.Windows.Forms.Padding(4);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(330, 25);
+            this.txtName.TabIndex = 2;
+            this.txtName.TextChanged += new System.EventHandler(this.TextBoxes_TextChanged);
+            // 
+            // lblGraduationYear
+            // 
+            this.lblGraduationYear.AutoSize = true;
+            this.lblGraduationYear.Location = new System.Drawing.Point(121, 67);
+            this.lblGraduationYear.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblGraduationYear.Name = "lblGraduationYear";
+            this.lblGraduationYear.Size = new System.Drawing.Size(108, 19);
+            this.lblGraduationYear.TabIndex = 1;
+            this.lblGraduationYear.Text = "Graduation Year";
+            // 
+            // lblEmail
+            // 
+            this.lblEmail.AutoSize = true;
+            this.lblEmail.Location = new System.Drawing.Point(172, 105);
+            this.lblEmail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblEmail.Name = "lblEmail";
+            this.lblEmail.Size = new System.Drawing.Size(41, 19);
+            this.lblEmail.TabIndex = 1;
+            this.lblEmail.Text = "Email";
+            // 
+            // txtYear
+            // 
+            this.txtYear.Location = new System.Drawing.Point(238, 65);
+            this.txtYear.Margin = new System.Windows.Forms.Padding(4);
+            this.txtYear.Name = "txtYear";
+            this.txtYear.Size = new System.Drawing.Size(330, 25);
+            this.txtYear.TabIndex = 2;
+            this.txtYear.TextChanged += new System.EventHandler(this.TextBoxes_TextChanged);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(-2, 251);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(918, 306);
+            this.dataGridView1.TabIndex = 2;
+            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // lblSnackbar
             // 
@@ -240,13 +245,14 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AlumniForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AlumniForm";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPhoto)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
