@@ -67,6 +67,8 @@ namespace AlumniAssociationApp
 
             dataGridView1.DataSource = dt;
 
+            dataGridView1.AllowUserToAddRows = false; // prevents blank row at the end
+
             if (dataGridView1.Columns["PhotoPath"] != null)
                 dataGridView1.Columns["PhotoPath"].Visible = false;
 
@@ -96,6 +98,9 @@ namespace AlumniAssociationApp
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            if (!ValidateForm())
+                return; // stop if validation fails
+
             string folderPath = Path.Combine(Application.StartupPath, @"..\..\Images");
             folderPath = Path.GetFullPath(folderPath);
             if (!Directory.Exists(folderPath))
@@ -196,6 +201,9 @@ namespace AlumniAssociationApp
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
+            dataGridView1.AllowUserToAddRows = false;
+
+
             if (isFormLoading) return;
             if (dataGridView1.CurrentRow == null)
             {
@@ -295,6 +303,38 @@ namespace AlumniAssociationApp
                                picPhoto.Image != null;
         }
 
+        private bool ValidateForm()
+        {
+            if (string.IsNullOrWhiteSpace(txtName.Text))
+            {
+                MessageBox.Show("Name is required!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtName.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtYear.Text) || !int.TryParse(txtYear.Text, out _))
+            {
+                MessageBox.Show("Valid Graduation Year is required!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtYear.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtEmail.Text))
+            {
+                MessageBox.Show("Email is required!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtEmail.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtPhone.Text))
+            {
+                MessageBox.Show("Phone is required!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtPhone.Focus();
+                return false;
+            }
+
+            return true;
+        }
 
 
     }
