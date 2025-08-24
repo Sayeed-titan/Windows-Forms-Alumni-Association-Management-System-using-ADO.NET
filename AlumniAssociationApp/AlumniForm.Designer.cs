@@ -42,15 +42,24 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.picPhoto = new System.Windows.Forms.PictureBox();
+            this.btnBrowse = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPhoto)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.picPhoto);
+            this.panel1.Controls.Add(this.btnClear);
             this.panel1.Controls.Add(this.txtPhone);
+            this.panel1.Controls.Add(this.btnDelete);
             this.panel1.Controls.Add(this.labelFullName);
+            this.panel1.Controls.Add(this.btnUpdate);
+            this.panel1.Controls.Add(this.btnAdd);
             this.panel1.Controls.Add(this.lblPhone);
+            this.panel1.Controls.Add(this.btnBrowse);
             this.panel1.Controls.Add(this.txtEmail);
             this.panel1.Controls.Add(this.txtName);
             this.panel1.Controls.Add(this.lblGraduationYear);
@@ -59,13 +68,13 @@
             this.panel1.Location = new System.Drawing.Point(-2, -1);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(918, 186);
+            this.panel1.Size = new System.Drawing.Size(918, 254);
             this.panel1.TabIndex = 0;
             // 
             // labelFullName
             // 
             this.labelFullName.AutoSize = true;
-            this.labelFullName.Location = new System.Drawing.Point(234, 24);
+            this.labelFullName.Location = new System.Drawing.Point(155, 28);
             this.labelFullName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelFullName.Name = "labelFullName";
             this.labelFullName.Size = new System.Drawing.Size(70, 19);
@@ -74,7 +83,7 @@
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(317, 24);
+            this.txtName.Location = new System.Drawing.Point(238, 28);
             this.txtName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(330, 25);
@@ -83,7 +92,7 @@
             // lblGraduationYear
             // 
             this.lblGraduationYear.AutoSize = true;
-            this.lblGraduationYear.Location = new System.Drawing.Point(200, 63);
+            this.lblGraduationYear.Location = new System.Drawing.Point(121, 67);
             this.lblGraduationYear.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblGraduationYear.Name = "lblGraduationYear";
             this.lblGraduationYear.Size = new System.Drawing.Size(108, 19);
@@ -92,7 +101,7 @@
             // 
             // txtYear
             // 
-            this.txtYear.Location = new System.Drawing.Point(317, 61);
+            this.txtYear.Location = new System.Drawing.Point(238, 65);
             this.txtYear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtYear.Name = "txtYear";
             this.txtYear.Size = new System.Drawing.Size(330, 25);
@@ -101,7 +110,7 @@
             // lblEmail
             // 
             this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(251, 101);
+            this.lblEmail.Location = new System.Drawing.Point(172, 105);
             this.lblEmail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(41, 19);
@@ -110,7 +119,7 @@
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(317, 97);
+            this.txtEmail.Location = new System.Drawing.Point(238, 101);
             this.txtEmail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(330, 25);
@@ -119,7 +128,7 @@
             // lblPhone
             // 
             this.lblPhone.AutoSize = true;
-            this.lblPhone.Location = new System.Drawing.Point(253, 140);
+            this.lblPhone.Location = new System.Drawing.Point(174, 144);
             this.lblPhone.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPhone.Name = "lblPhone";
             this.lblPhone.Size = new System.Drawing.Size(48, 19);
@@ -128,7 +137,7 @@
             // 
             // txtPhone
             // 
-            this.txtPhone.Location = new System.Drawing.Point(317, 136);
+            this.txtPhone.Location = new System.Drawing.Point(238, 140);
             this.txtPhone.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(330, 25);
@@ -136,7 +145,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(197, 200);
+            this.btnAdd.Location = new System.Drawing.Point(35, 191);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(117, 39);
@@ -147,7 +156,7 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(340, 200);
+            this.btnUpdate.Location = new System.Drawing.Point(178, 191);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(117, 39);
@@ -158,7 +167,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(482, 200);
+            this.btnDelete.Location = new System.Drawing.Point(320, 191);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(117, 39);
@@ -169,7 +178,7 @@
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(618, 200);
+            this.btnClear.Location = new System.Drawing.Point(456, 191);
             this.btnClear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(117, 39);
@@ -189,6 +198,27 @@
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
+            // picPhoto
+            // 
+            this.picPhoto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picPhoto.Location = new System.Drawing.Point(589, 28);
+            this.picPhoto.Name = "picPhoto";
+            this.picPhoto.Size = new System.Drawing.Size(135, 137);
+            this.picPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picPhoto.TabIndex = 3;
+            this.picPhoto.TabStop = false;
+            // 
+            // btnBrowse
+            // 
+            this.btnBrowse.Location = new System.Drawing.Point(589, 191);
+            this.btnBrowse.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBrowse.Name = "btnBrowse";
+            this.btnBrowse.Size = new System.Drawing.Size(135, 39);
+            this.btnBrowse.TabIndex = 1;
+            this.btnBrowse.Text = "Browser Photo";
+            this.btnBrowse.UseVisualStyleBackColor = true;
+            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
+            // 
             // AlumniForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -196,10 +226,6 @@
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(915, 603);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.btnClear);
-            this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.btnUpdate);
-            this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -208,6 +234,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPhoto)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -228,5 +255,7 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.PictureBox picPhoto;
+        private System.Windows.Forms.Button btnBrowse;
     }
 }

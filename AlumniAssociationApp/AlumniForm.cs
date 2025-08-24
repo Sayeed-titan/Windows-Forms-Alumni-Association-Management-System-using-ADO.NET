@@ -28,7 +28,6 @@ namespace AlumniAssociationApp
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.ReadOnly = true;
 
-
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -90,6 +89,21 @@ namespace AlumniAssociationApp
                 txtYear.Text = dataGridView1.CurrentRow.Cells["GraduationYear"].Value.ToString();
                 txtEmail.Text = dataGridView1.CurrentRow.Cells["Email"].Value.ToString();
                 txtPhone.Text = dataGridView1.CurrentRow.Cells["Phone"].Value.ToString();
+            }
+        }
+
+        private string selectedPhotoPath = "";
+
+        private void btnBrowse_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                ofd.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp";
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    selectedPhotoPath = ofd.FileName;
+                    picPhoto.ImageLocation = selectedPhotoPath;
+                }
             }
         }
     }

@@ -8,7 +8,9 @@ CREATE TABLE Alumni (
     FullName NVARCHAR(100),
     GraduationYear INT,
     Email NVARCHAR(100),
-    Phone NVARCHAR(20)
+    Phone NVARCHAR(20),
+	PhotoPath NVARCHAR(200) NULL;
+
 );
 
 CREATE TABLE Events (
