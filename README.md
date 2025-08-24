@@ -51,15 +51,12 @@ It provides **full CRUD functionality**, **image management**, **form validation
 ## Screenshots / Demo
 
 ### Form Layout
-![Alumni Form Screenshot](screenshots/form_screenshot.png)
 
 ### DataGridView with Photos
-![Alumni Grid Screenshot](screenshots/grid_screenshot.png)
 
 ### Snackbar Notifications
-![Snackbar Demo GIF](screenshots/snackbar_demo.gif)
 
-> *(Replace `screenshots/...` with your actual image paths in the repo)*
+
 
 ---
 
