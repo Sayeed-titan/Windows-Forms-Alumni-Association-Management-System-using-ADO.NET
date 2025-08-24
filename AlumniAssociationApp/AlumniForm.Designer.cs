@@ -38,12 +38,13 @@
             this.lblPhone = new System.Windows.Forms.Label();
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.picPhoto = new System.Windows.Forms.PictureBox();
             this.btnBrowse = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.lblSnackbar = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPhoto)).BeginInit();
@@ -56,7 +57,7 @@
             this.panel1.Controls.Add(this.txtPhone);
             this.panel1.Controls.Add(this.btnDelete);
             this.panel1.Controls.Add(this.labelFullName);
-            this.panel1.Controls.Add(this.btnUpdate);
+            this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Controls.Add(this.btnAdd);
             this.panel1.Controls.Add(this.lblPhone);
             this.panel1.Controls.Add(this.btnBrowse);
@@ -145,7 +146,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(35, 191);
+            this.btnAdd.Location = new System.Drawing.Point(238, 191);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(117, 39);
@@ -154,23 +155,12 @@
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Location = new System.Drawing.Point(178, 191);
-            this.btnUpdate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(117, 39);
-            this.btnUpdate.TabIndex = 1;
-            this.btnUpdate.Text = "Update";
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-            // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(320, 191);
+            this.btnDelete.Location = new System.Drawing.Point(757, 28);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(117, 39);
+            this.btnDelete.Size = new System.Drawing.Size(85, 39);
             this.btnDelete.TabIndex = 1;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -178,10 +168,10 @@
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(456, 191);
+            this.btnClear.Location = new System.Drawing.Point(759, 85);
             this.btnClear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(117, 39);
+            this.btnClear.Size = new System.Drawing.Size(83, 39);
             this.btnClear.TabIndex = 1;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
@@ -194,7 +184,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(-2, 251);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(918, 352);
+            this.dataGridView1.Size = new System.Drawing.Size(918, 306);
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -219,12 +209,34 @@
             this.btnBrowse.UseVisualStyleBackColor = true;
             this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
             // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(451, 191);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(117, 39);
+            this.btnCancel.TabIndex = 1;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // lblSnackbar
+            // 
+            this.lblSnackbar.AutoSize = true;
+            this.lblSnackbar.Location = new System.Drawing.Point(374, 571);
+            this.lblSnackbar.Name = "lblSnackbar";
+            this.lblSnackbar.Size = new System.Drawing.Size(152, 19);
+            this.lblSnackbar.TabIndex = 3;
+            this.lblSnackbar.Text = "Messages comes here...";
+            this.lblSnackbar.Visible = false;
+            // 
             // AlumniForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(915, 603);
+            this.Controls.Add(this.lblSnackbar);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -236,6 +248,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPhoto)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -251,11 +264,12 @@
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Label lblEmail;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.PictureBox picPhoto;
         private System.Windows.Forms.Button btnBrowse;
+        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Label lblSnackbar;
     }
 }

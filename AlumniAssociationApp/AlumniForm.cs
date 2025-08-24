@@ -76,18 +76,35 @@ namespace AlumniAssociationApp
                 File.Copy(selectedPhotoPath, destPath, true);
             }
 
-            string query = "INSERT INTO Alumni (FullName, GraduationYear, Email, Phone, PhotoPath) " +
-                           "VALUES (@Name, @Year, @Email, @Phone, @PhotoPath)";
-            DatabaseHelper.ExecuteCommand(query,
-                new SqlParameter("@Name", txtName.Text),
-                new SqlParameter("@Year", int.Parse(txtYear.Text)),
-                new SqlParameter("@Email", txtEmail.Text),
-                new SqlParameter("@Phone", txtPhone.Text),
-                new SqlParameter("@PhotoPath", destPath)
-            );
+            if (!isUpdateMode)
+            {
+                // Add new
+                string query = "INSERT INTO Alumni (FullName, GraduationYear, Email, Phone, PhotoPath) VALUES (@Name,@Year,@Email,@Phone,@PhotoPath)";
+                DatabaseHelper.ExecuteCommand(query,
+                    new SqlParameter("@Name", txtName.Text),
+                    new SqlParameter("@Year", int.Parse(txtYear.Text)),
+                    new SqlParameter("@Email", txtEmail.Text),
+                    new SqlParameter("@Phone", txtPhone.Text),
+                    new SqlParameter("@PhotoPath", destPath)
+                );
+                ShowSnackbar($"{txtName.Text} has been added.");
+            }
+            else
+            {
+                // Update
+                string query = "UPDATE Alumni SET FullName=@Name, GraduationYear=@Year, Email=@Email, Phone=@Phone, PhotoPath=@PhotoPath WHERE AlumniID=@ID";
+                DatabaseHelper.ExecuteCommand(query,
+                    new SqlParameter("@Name", txtName.Text),
+                    new SqlParameter("@Year", int.Parse(txtYear.Text)),
+                    new SqlParameter("@Email", txtEmail.Text),
+                    new SqlParameter("@Phone", txtPhone.Text),
+                    new SqlParameter("@PhotoPath", string.IsNullOrEmpty(destPath) ? dataGridView1.CurrentRow.Cells["PhotoPath"].Value.ToString() : destPath),
+                    new SqlParameter("@ID", selectedAlumniId)
+                );
+                ShowSnackbar($"{txtName.Text} has been updated.");
+            }
 
             LoadAlumni();
-            ClearFields();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -125,12 +142,18 @@ namespace AlumniAssociationApp
         {
             if (dataGridView1.CurrentRow == null) return;
 
+            string name = dataGridView1.CurrentRow.Cells["FullName"].Value.ToString();
             int id = Convert.ToInt32(dataGridView1.CurrentRow.Cells["AlumniID"].Value);
-            string query = "DELETE FROM Alumni WHERE AlumniID=@ID";
-            DatabaseHelper.ExecuteCommand(query, new SqlParameter("@ID", id));
 
-            LoadAlumni();
-            ClearFields();
+            var result = MessageBox.Show($"Do you want to delete {name}?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.Yes)
+            {
+                string query = "DELETE FROM Alumni WHERE AlumniID=@ID";
+                DatabaseHelper.ExecuteCommand(query, new SqlParameter("@ID", id));
+                ShowSnackbar($"{name} has been deleted.");
+                LoadAlumni();
+                ClearFields();
+            }
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -153,7 +176,13 @@ namespace AlumniAssociationApp
             else
                 picPhoto.Image = null;
 
-            selectedPhotoPath = ""; // reset selected photo
+            selectedPhotoPath = "";
+
+            // Enable update mode
+            isUpdateMode = true;
+            selectedAlumniId = Convert.ToInt32(dataGridView1.CurrentRow.Cells["AlumniID"].Value);
+            btnAdd.Text = "Update";
+            btnCancel.Visible = true;
         }
 
 
@@ -178,9 +207,26 @@ namespace AlumniAssociationApp
             txtPhone.Text = "";
             picPhoto.Image = null;
             selectedPhotoPath = "";
+            isUpdateMode = false;
+            selectedAlumniId = -1;
+            btnAdd.Text = "Add";
+            btnCancel.Visible = false;
             dataGridView1.ClearSelection();
         }
 
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            ClearFields();
+
+        }
+
+        private async void ShowSnackbar(string message)
+        {
+            lblSnackbar.Text = message;
+            lblSnackbar.Visible = true;
+            await Task.Delay(2000); // show 2 seconds
+            lblSnackbar.Visible = false;
+        }
 
 
     }
