@@ -16,6 +16,10 @@ namespace AlumniAssociationApp
     {
         private string selectedPhotoPath = "";
 
+        private bool isUpdateMode = false;
+        private int selectedAlumniId = -1;
+
+
         public AlumniForm()
         {
             InitializeComponent();
@@ -26,7 +30,6 @@ namespace AlumniAssociationApp
         {
             DataTable dt = DatabaseHelper.GetData("SELECT * FROM Alumni");
 
-            // Add image column
             if (!dt.Columns.Contains("PhotoImage"))
                 dt.Columns.Add("PhotoImage", typeof(Bitmap));
 
@@ -39,26 +42,25 @@ namespace AlumniAssociationApp
 
             dataGridView1.DataSource = dt;
 
-            // Hide PhotoPath column
             if (dataGridView1.Columns["PhotoPath"] != null)
                 dataGridView1.Columns["PhotoPath"].Visible = false;
 
-            // Show image column
             if (dataGridView1.Columns["PhotoImage"] != null)
             {
                 dataGridView1.Columns["PhotoImage"].HeaderText = "Photo";
                 dataGridView1.Columns["PhotoImage"].Width = 100;
             }
 
-            // Auto-fit
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.ReadOnly = true;
 
-            // Clear selection on load
-            dataGridView1.ClearSelection();
+            dataGridView1.RowTemplate.Height = 120; // increase row height
+            dataGridView1.ClearSelection();         // no row selected on load
 
+            ClearFields(); // Clear all inputs on form load
         }
+
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
